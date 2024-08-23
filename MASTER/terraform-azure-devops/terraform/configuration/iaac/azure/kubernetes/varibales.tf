@@ -27,7 +27,7 @@ variable resource_group {
 }
 
 variable "vm_size" {
-  default = "Standard_DS1_v2"
+  default = "Standard_DS2_v2"
 }
 variable "storage_account" {
   default = "tf-storage-state"
