@@ -3,6 +3,10 @@ resource "azurerm_resource_group" "resource_group" {
   location = var.location
 }
 
+provider "azurerm" {
+  features {}
+}
+
 resource "azurerm_kubernetes_cluster" "terraform-kubernetes" {
   name                = var.cluster_name
   location            = azurerm_resource_group.resource_group.location
