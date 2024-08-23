@@ -11,7 +11,7 @@ steps:
 - task: DownloadSecureFile@1
   name: publickey
   inputs:
-    secureFile: 'azure_rsa_3'
+    secureFile: 'azure_rsa_3.pub'
 
 - task: TerraformCLI@2
   inputs:
@@ -21,7 +21,7 @@ steps:
     backendServiceArm: 'azure-resource-manager-service-connection'
     ensureBackend: true
     backendAzureRmResourceGroupName: 'backend-tf-rg'
-    backendAzureRmResourceGroupLocation: 'brazilsouth'
+    backendAzureRmResourceGroupLocation: 'westeurope'
     backendAzureRmStorageAccountName: 'storageaccountlana2'
     backendAzureRmContainerName: 'storageaccountcontainerlana2'
     backendAzureRmKey: 'k8s-dev.tfstate'
