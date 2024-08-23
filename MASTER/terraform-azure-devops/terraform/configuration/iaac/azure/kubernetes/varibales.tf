@@ -7,7 +7,7 @@ variable environment {
 }
 
 variable location {
-  default = "brazilsouth"
+  default = "westeurope"
 }
 
 variable node_count {
@@ -27,7 +27,7 @@ variable resource_group {
 }
 
 variable "vm_size" {
-  default = "f"
+  default = "Standard_DS1_v2"
 }
 variable "storage_account" {
   default = "tf-storage-state"
