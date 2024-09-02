@@ -1,0 +1,51 @@
+---
+- name: Deploy Docker image to AKS
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Set Kubeconfig for AKS
+      shell: az aks get-credentials --resource-group kubernetes-rg --name k8s-cluster --overwrite-existing
+      register: kubeconfig
+      changed_when: False
+
+    - name: Deploy Docker image to AKS
+      k8s:
+        state: present
+        namespace: default
+        definition:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: task-service
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: task-service
+            template:
+              metadata:
+                labels:
+                  app: task-service
+              spec:
+                containers:
+                  - name: task-service
+                    image: lanaradmilovic/task-service:latest
+                    ports:
+                      - containerPort: 8080
+
+    - name: Expose the Deployment as a Service
+      k8s:
+        state: present
+        namespace: default
+        definition:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: task-service
+          spec:
+            type: LoadBalancer
+            ports:
+              - port: 80
+                targetPort: 8080
+            selector:
+              app: task-service
