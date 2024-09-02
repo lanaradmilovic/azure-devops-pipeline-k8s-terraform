@@ -33,6 +33,12 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)/MASTER/terraform-azure-devops/terraform/configuration/iaac/azure/kubernetes'
     environmentServiceName: 'azure-resource-manager-service-connection'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      pip install kubernetes
+
 - task: Ansible@0
   inputs:
     ansibleInterface: 'agentMachine'
