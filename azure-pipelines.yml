@@ -37,6 +37,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      pip install docker
       pip install kubernetes
 
 - task: Ansible@0
