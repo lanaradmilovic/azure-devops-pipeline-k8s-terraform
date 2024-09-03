@@ -27,13 +27,13 @@ steps:
     backendAzureRmKey: 'k8s-dev.tfstate'
     commandOptions: '-reconfigure'
 
-#- task: TerraformCLI@2
-#  inputs:
-#
-#    command: 'apply'
-#    workingDirectory: '$(System.DefaultWorkingDirectory)/MASTER/terraform-azure-devops/terraform/configuration/iaac/azure/kubernetes'
-#    environmentServiceName: 'azure-resource-manager-service-connection'
-#    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
+- task: TerraformCLI@2
+  inputs:
+
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/MASTER/terraform-azure-devops/terraform/configuration/iaac/azure/kubernetes'
+    environmentServiceName: 'azure-resource-manager-service-connection'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
 - task: Bash@3
   inputs:
     targetType: 'inline'
