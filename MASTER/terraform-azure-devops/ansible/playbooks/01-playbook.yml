@@ -16,6 +16,7 @@
           kind: Deployment
           metadata:
             name: taskservice
+            namespace: default
           spec:
             replicas: 1
             selector:
@@ -33,13 +34,14 @@
                       - containerPort: 8080
 
     - name: Expose the Deployment as a Service
-      k8s:
+      kubernetes.core.k8s:
         state: present
         definition:
           apiVersion: v1
           kind: Service
           metadata:
             name: taskservice
+            namespace: default
           spec:
             type: LoadBalancer
             ports:
