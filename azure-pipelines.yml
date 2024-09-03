@@ -38,7 +38,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      pip install docker
+      ansible-galaxy collection install kubernetes.core
       pip install kubernetes
 
 - task: Ansible@0
