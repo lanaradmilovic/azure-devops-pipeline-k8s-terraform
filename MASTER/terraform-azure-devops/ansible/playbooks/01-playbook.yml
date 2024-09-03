@@ -9,9 +9,8 @@
       changed_when: False
 
     - name: Deploy Docker image to AKS
-      k8s:
+      kubernetes.core.k8s:
         state: present
-        namespace: default
         definition:
           apiVersion: apps/v1
           kind: Deployment
@@ -36,7 +35,6 @@
     - name: Expose the Deployment as a Service
       k8s:
         state: present
-        namespace: default
         definition:
           apiVersion: v1
           kind: Service
