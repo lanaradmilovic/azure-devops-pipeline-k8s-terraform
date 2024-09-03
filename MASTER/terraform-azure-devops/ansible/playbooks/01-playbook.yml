@@ -29,7 +29,7 @@
               spec:
                 containers:
                   - name: taskservice
-                    image: lanaradmilovic/task-service:latest
+                    image: lanaradmilovic/taskservice:0.0.3.RELEASE
                     ports:
                       - containerPort: 8080
 
